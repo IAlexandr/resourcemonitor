@@ -13,5 +13,14 @@ function ServicesCtrl($scope, $http){
 
     $scope.refresh = function (){
        //механизм проверки связи с сервисами.
+        angular.forEach($scope.services, function(value, key){
+            $http.get(value.FeatureServiceUrl)
+                .success(function (res){
+                value.status = true;
+            })
+                .error(function (data, status, headers, config){
+                    value.status = false;
+                });
+        });
     }
 }
