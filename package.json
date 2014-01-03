@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/IAlexandr/resourcemonitor/issues"
   },
-  "homepage": "https://github.com/IAlexandr/resourcemonitor"
+  "homepage": "https://github.com/IAlexandr/resourcemonitor",
+  "dependencies": {
+    "express": "~3.4.7"
+  }
 }
