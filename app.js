@@ -9,7 +9,7 @@ var app = express();
 // важен порядок
 app.use(express.static(__dirname + '/public'));
 app.use('/',function(req, res){
-    res.send('404');
+    res.send(404,'Not found');
 });
 app.listen(port);
 console.log('сервер слушает на порту: ' + port);
