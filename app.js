@@ -7,6 +7,7 @@ var express = require('express');
 
 var app = express();
 // важен порядок
+app.use(express.logger('dev')); // Вывод отладочных сообщений в консоль
 app.use(express.static(__dirname + '/public'));
 app.use('/',function(req, res){
     res.send(404,'Not found');
