@@ -1,12 +1,10 @@
 [
     {
         "name": "Hostilу Units",
-        "FeatureServiceUrl": "http://sampleserver6.arcgisonline.com/arcgis/rest/services/Military/FeatureServer/6",
-        "status":false
+        "FeatureServiceUrl": "http://sampleserver6.arcgisonline.com/arcgis/rest/services/Military/FeatureServer/6"
     },
     {
         "name": "Incidents",
-        "FeatureServiceUrl": "http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/SanFrancisco/311Incidents/FeatureServer/0",
-        "status":false
+        "FeatureServiceUrl": "http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/SanFrancisco/311Incidents/FeatureServer/0"
     }
 ]
