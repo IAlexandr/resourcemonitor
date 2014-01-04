@@ -22,7 +22,7 @@ function ServicesCtrl($scope, $http) {
         angular.forEach($scope.services, function (value, key) {
             serverCheckConnInternet(function (res) {
                 if (res=='true') {
-                    $scope.viewStatusServer = ''; 
+                    $scope.viewStatusServer = '';
                     checkConnFromServer(value.FeatureServiceUrl, function (r) {
                         if (r) {
                             value.statusServer = "ok";

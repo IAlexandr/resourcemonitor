@@ -21,7 +21,7 @@
         </tr>
         <tr ng-repeat="service in services">
             <td class="status-{{ service.status }}">{{ service.name }}</td>
-            <td class="status-{{ service.status }}">{{ service.FeatureServiceUrl }}</td>
+            <td class="status-{{ service.status }}"><a href="{{ service.FeatureServiceUrl }}">{{ service.FeatureServiceUrl }}</a></td>
             <td class="status-{{ service.statusBrowser }}"><span class="{{service.iconclass}}"></span></td>
             <td class="status-{{ service.statusServer }}"><span class="{{service.servericonclass}}"></span></td>
         </tr>
