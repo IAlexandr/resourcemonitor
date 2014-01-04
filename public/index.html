@@ -10,7 +10,7 @@
     <title></title>
 </head>
 <body>
-<div ng-controller="ServicesCtrl">
+<div ng-controller="ServicesCtrl" class="container">
     <h3>Services:</h3>
     <button class="btn" ng-click="getServices()">Get Services</button>
     <ul>
@@ -18,7 +18,7 @@
             <span class="status-{{ service.status }}">{{ service.name }}</span>
         </li>
     </ul>
-    <button class="btn" ng-click="refresh()">Check</button>
+    <button class="btn" ng-click="checkConn()">Check</button>
 </div>
 </body>
 </html>
