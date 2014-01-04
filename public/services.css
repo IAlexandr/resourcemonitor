@@ -1,7 +1,7 @@
-.status-1{
+.status-ok{
     background-color:rgba(126, 238, 145, 0.31);
 }
-.status-0{
+.status-bad{
     background-color:rgba(238, 139, 136, 0.31);
 }
 .status-{

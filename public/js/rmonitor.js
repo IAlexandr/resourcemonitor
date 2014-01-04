@@ -18,11 +18,11 @@ function ServicesCtrl($scope, $http){
         angular.forEach($scope.services, function(value, key){
             $http.get(value.FeatureServiceUrl)
                 .success(function (res){
-                    value.status = 1;
+                    value.status = 'ok';
                     value.iconclass = 'glyphicon glyphicon-ok-sign';
                 })
                 .error(function (data, status, headers, config){
-                    value.status = 0;
+                    value.status = 'bad';
                     value.iconclass = 'glyphicon glyphicon-minus-sign';
                 });
         });
