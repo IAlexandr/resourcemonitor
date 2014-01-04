@@ -6,19 +6,27 @@ function ServicesCtrl($scope, $http){
     function getSer(){// получение списка сервисов
         $http.get('/services.json').success(function (res){
             $scope.services = res;
+            angular.forEach($scope.services, function(value, key){
+                value.iconclass = 'glyphicon glyphicon-refresh';
+            });
+            checkConn();
         });
     }
     getSer();
-    $scope.checkConn = function (){
+    function checkConn(){
        //механизм проверки связи с сервисами.
         angular.forEach($scope.services, function(value, key){
             $http.get(value.FeatureServiceUrl)
                 .success(function (res){
-                    value.status = true;
+                    value.status = 1;
+                    value.iconclass = 'glyphicon glyphicon-ok-sign';
                 })
                 .error(function (data, status, headers, config){
-                    value.status = false;
+                    value.status = 0;
+                    value.iconclass = 'glyphicon glyphicon-minus-sign';
                 });
         });
     }
+    // проверка связи с сервисами через определенный интервал
+    setInterval(checkConn, 5000);
 }
