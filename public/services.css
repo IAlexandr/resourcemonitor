@@ -1,9 +1,9 @@
-.status-true{
-    color:green;
+.status-1{
+    background-color:rgba(126, 238, 145, 0.31);
 }
-.status-false{
-    color:red;
+.status-0{
+    background-color:rgba(238, 139, 136, 0.31);
 }
 .status-{
-    color:gray;
+    background-color:rgba(238, 231, 234, 0.31);
 }
