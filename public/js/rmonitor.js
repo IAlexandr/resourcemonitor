@@ -3,11 +3,13 @@
  */
 function ServicesCtrl($scope, $http) {
     $scope.services = null;
+    $scope.viewStatusServer = '';
     function getSer() {// получение списка сервисов
         $http.get('/services.json').success(function (res) {
             $scope.services = res;
             angular.forEach($scope.services, function (value, key) {
                 value.iconclass = 'glyphicon glyphicon-refresh';
+                value.servericonclass = 'glyphicon glyphicon-refresh';
             });
             checkConn();
         });
@@ -19,7 +21,8 @@ function ServicesCtrl($scope, $http) {
         //механизм проверки связи с сервисами.
         angular.forEach($scope.services, function (value, key) {
             serverCheckConnInternet(function (res) {
-                if (res) {
+                if (res=='true') {
+                    $scope.viewStatusServer = ''; 
                     checkConnFromServer(value.FeatureServiceUrl, function (r) {
                         if (r) {
                             value.statusServer = "ok";
@@ -30,8 +33,9 @@ function ServicesCtrl($scope, $http) {
                         }
                     })
                 } else {
-                    value.statusServer = 'bad';
-                    value.servericonclass = 'glyphicon glyphicon-minus-sign';
+                    $scope.viewStatusServer = 'glyphicon glyphicon-minus-sign';
+                    value.statusServer = '';
+                    value.servericonclass = 'glyphicon glyphicon-refresh';
                 }
                 $http.get(value.FeatureServiceUrl)
                     .success(function (res) {
@@ -54,7 +58,7 @@ function ServicesCtrl($scope, $http) {
     }
 
     // проверка связи с сервисами через определенный интервал
-    setInterval(checkConn, 5000);
+    setInterval(checkConn, 3000);
 
     function serverCheckConnInternet(callback) {
         checkConnFromServer('http://google.ru', function (res) {
