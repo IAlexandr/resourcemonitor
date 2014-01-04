@@ -5,7 +5,7 @@ function ServicesCtrl($scope, $http) {
     $scope.services = null;
     $scope.viewStatusServer = '';
     function getSer() {// получение списка сервисов
-        $http.get('/services.json').success(function (res) {
+        $http.get('/services').success(function (res) {
             $scope.services = res;
             angular.forEach($scope.services, function (value, key) {
                 value.iconclass = 'glyphicon glyphicon-refresh';
