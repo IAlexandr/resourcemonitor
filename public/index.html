@@ -13,11 +13,11 @@
 <div ng-controller="ServicesCtrl" class="container">
     <h3>Services:</h3>
     <button class="btn" ng-click="getServices()">Get Services</button>
-    <ul>
-        <li ng-repeat="service in services">
-            <span class="status-{{ service.status }}">{{ service.name }}</span>
-        </li>
-    </ul>
+    <table>
+        <tr ng-repeat="service in services">
+            <td class="status-{{ service.status }}">{{ service.name }}</td>
+        </tr>
+    </table>
     <button class="btn" ng-click="checkConn()">Check</button>
 </div>
 </body>

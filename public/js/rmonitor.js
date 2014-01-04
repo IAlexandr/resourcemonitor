@@ -9,7 +9,7 @@ function ServicesCtrl($scope, $http){
         });
     }
     getSer();
-    $scope.checkConnect = function (){
+    $scope.checkConn = function (){
        //механизм проверки связи с сервисами.
         angular.forEach($scope.services, function(value, key){
             $http.get(value.FeatureServiceUrl)
