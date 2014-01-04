@@ -37,17 +37,16 @@ function ServicesCtrl($scope, $http) {
                     value.statusServer = '';
                     value.servericonclass = 'glyphicon glyphicon-refresh';
                 }
-                $http.get(value.FeatureServiceUrl)
-                    .success(function (res) {
-                        value.statusBrowser = 'ok';
-                        value.iconclass = 'glyphicon glyphicon-ok-sign';
-                    })
-                    .error(function (data, status, headers, config) {
-                        value.statusBrowser = 'bad';
-                        value.iconclass = 'glyphicon glyphicon-minus-sign';
-                    });
             });
-
+            $http.get(value.FeatureServiceUrl)
+                .success(function (res) {
+                    value.statusBrowser = 'ok';
+                    value.iconclass = 'glyphicon glyphicon-ok-sign';
+                })
+                .error(function (data, status, headers, config) {
+                    value.statusBrowser = 'bad';
+                    value.iconclass = 'glyphicon glyphicon-minus-sign';
+                });
         });
     }
 
