@@ -1,8 +1,10 @@
 .status-ok{
     background-color:rgba(126, 238, 145, 0.31);
+    color: green;
 }
 .status-bad{
     background-color:rgba(238, 139, 136, 0.31);
+    color:red;
 }
 .status-{
     background-color:rgba(238, 231, 234, 0.31);
