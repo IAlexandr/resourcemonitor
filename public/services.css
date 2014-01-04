@@ -9,3 +9,10 @@
 .status-{
     background-color:rgba(238, 231, 234, 0.31);
 }
+
+.tableHead{
+    background-color: rgba(147, 145, 143, 0.31);
+}
+.tableBody{
+    background-color: rgba(238, 231, 234, 0.31);
+}

@@ -10,15 +10,19 @@ var app = express();
 // важен порядок
 app.use(express.logger('dev')); // Вывод отладочных сообщений в консоль
 app.use(express.static(__dirname + '/public'));
-app.use('/testurl', function(req, res){
+
+// маршруты
+app.get('/testurl', function(req, res){
     console.log(req.query);
     var t = req.query;
     urltest.testUrl(req.query.url, function(err, result){
         res.send(result);
     });
 });
-app.use('/',function(req, res){
-    res.send(404,'Not found');
+
+app.get('/',function(req, res){
+    res.send(404, 'Not found');
 });
+
 app.listen(port);
 console.log('сервер слушает на порту: ' + port);
