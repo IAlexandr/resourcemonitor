@@ -16,12 +16,14 @@
         <tr>
             <th>Наименовование</th>
             <th>Адрес</th>
-            <th></th>
+            <th>С браузера</th>
+            <th>С сервера</th>
         </tr>
         <tr ng-repeat="service in services">
             <td class="status-{{ service.status }}">{{ service.name }}</td>
             <td class="status-{{ service.status }}">{{ service.FeatureServiceUrl }}</td>
-            <td class="status-{{ service.status }}"><span class="{{service.iconclass}}"></span></td>
+            <td class="status-{{ service.statusBrowser }}"><span class="{{service.iconclass}}"></span></td>
+            <td class="status-{{ service.statusServer }}"><span class="{{service.servericonclass}}"></span></td>
         </tr>
     </table>
 </div>
