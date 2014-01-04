@@ -12,13 +12,18 @@
 <body>
 <div ng-controller="ServicesCtrl" class="container">
     <h3>Services:</h3>
-    <button class="btn" ng-click="getServices()">Get Services</button>
-    <table>
+    <table class="table">
+        <tr>
+            <th>Наименовование</th>
+            <th>Адрес</th>
+            <th></th>
+        </tr>
         <tr ng-repeat="service in services">
             <td class="status-{{ service.status }}">{{ service.name }}</td>
+            <td class="status-{{ service.status }}">{{ service.FeatureServiceUrl }}</td>
+            <td class="status-{{ service.status }}"><span class="{{service.iconclass}}"></span></td>
         </tr>
     </table>
-    <button class="btn" ng-click="checkConn()">Check</button>
 </div>
 </body>
 </html>
