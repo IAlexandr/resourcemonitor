@@ -3,6 +3,7 @@
  */
 
 var serviceModule = angular.module('ServiceModule', []);
+
 serviceModule.factory('sService', ['$http', function ($http) {
     var services = {};
     services.get = function (callback) {
@@ -12,14 +13,13 @@ serviceModule.factory('sService', ['$http', function ($http) {
         });
     };
     services.checkConnection = function (url, callback) {
-        $http.get('/testurl?url=' + url).success(function (res) {
+        $http.get('/testurl?url=' + url, {cache: false}).success(function (res) {
             callback(res);
         });
     };
     return services;
-}]);
-
-function ServicesCtrl($scope, $http, sService) {
+}])
+serviceModule.controller('ServicesCtrl', function ($scope, $http, sService) {
     $scope.services = sService.get(function (res) {
         $scope.services = res;
         $scope.viewStatusServer = '';
@@ -70,5 +70,17 @@ function ServicesCtrl($scope, $http, sService) {
         sService.checkConnection('http://google.ru', function (res) {
             callback(res);
         })
+    };
+
+    $scope.addService = function () {
+        // выбрать массив без лишних полей. и запостить.
+        var name = $scope.search.name;
+        var address = $scope.search.FeatureServiceUrl;
+        var ser = {"name": name, "FeatureServiceUrl": address};
+        $scope.services.push(ser);
+        $http.post('/services', $scope.services)
+            .success(function (res) {
+                alert('Сервис добавлен!');
+            });
     }
-}
+});
