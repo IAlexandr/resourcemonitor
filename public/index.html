@@ -2,6 +2,7 @@
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+    <script src="http://underscorejs.org/underscore.js"></script>
     <script type="text/javascript" src="js/rmonitor.js"></script>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"/>
@@ -14,15 +15,20 @@
     <div ng-controller="ServicesCtrl" class="container">
         <h3>Проверка связи с сервисами</h3>
         <table class="table">
+            <div>{{search.name}}</div>
+                <input type="text" style="margin-right:5px" class="input" placeholder="Наименование" ng-model="search.name" />
+                <input type="text" style="margin-right:5px" class="input" placeholder="Адрес" ng-model="search.FeatureServiceUrl" />
+                <a href="" style="margin-right:5px" class="btn btn-primary" ng-click="addService()">Добавить</a>
+
             <tr class="tableHead">
                 <th>Наименовование</th>
                 <th>Адрес</th>
                 <th>Браузер</th>
                 <th>Сервер <span style="color:red" class="{{viewStatusServer}}"></span></th>
             </tr>
-            <tr ng-repeat="service in services">
+            <tr ng-repeat="service in services | filter:search">
                 <td class="tableBody">{{ service.name }}</td>
-                <td class="tableBody"><a href="{{ service.FeatureServiceUrl }}">{{ service.FeatureServiceUrl }}</a></td>
+                <td class="tableBody"><a href="{{ service.FeatureServiceUrl}}">{{ service.FeatureServiceUrl}}</a></td>
                 <td class="status-{{ service.statusBrowser }}"><span class="{{service.iconclass}}"></span></td>
                 <td class="status-{{ service.statusServer }}"><span class="{{service.servericonclass}}"></span></td>
             </tr>
