@@ -1,29 +1,42 @@
 /**
  * Created by aivanov on 03.01.14.
  */
-function ServicesCtrl($scope, $http) {
-    $scope.services = null;
-    $scope.viewStatusServer = '';
-    function getSer() {// получение списка сервисов
-        $http.get('/services').success(function (res) {
-            $scope.services = res;
-            angular.forEach($scope.services, function (value, key) {
-                value.iconclass = 'glyphicon glyphicon-refresh';
-                value.servericonclass = 'glyphicon glyphicon-refresh';
-            });
-            checkConn();
-        });
-    }
 
-    getSer();
+var serviceModule = angular.module('ServiceModule', []);
+serviceModule.factory('sService', ['$http', function ($http) {
+    var services = {};
+    services.get = function (callback) {
+        return $http.get('/services').success(function (res) {
+            callback(res);
+            return res;
+        });
+    };
+    services.checkConnection = function (url, callback) {
+        $http.get('/testurl?url=' + url).success(function (res) {
+            callback(res);
+        });
+    };
+    return services;
+}]);
+
+function ServicesCtrl($scope, $http, sService) {
+    $scope.services = sService.get(function (res) {
+        $scope.services = res;
+        $scope.viewStatusServer = '';
+        angular.forEach($scope.services, function (value, key) {
+            value.iconclass = 'glyphicon glyphicon-refresh';
+            value.servericonclass = 'glyphicon glyphicon-refresh';
+        });
+        //checkConn();
+    });
 
     function checkConn() {
         //механизм проверки связи с сервисами.
         angular.forEach($scope.services, function (value, key) {
             serverCheckConnInternet(function (res) {
-                if (res=='true') {
+                if (res == 'true') {
                     $scope.viewStatusServer = '';
-                    checkConnFromServer(value.FeatureServiceUrl, function (r) {
+                    sService.checkConnection(value.FeatureServiceUrl, function (r) {
                         if (r) {
                             value.statusServer = "ok";
                             value.servericonclass = 'glyphicon glyphicon-ok-sign';
@@ -50,19 +63,12 @@ function ServicesCtrl($scope, $http) {
         });
     }
 
-    function checkConnFromServer(url, callback) {
-        $http.get('/testurl?url=' + url).success(function (res) {
-            callback(res);
-        });
-    }
-
-    // проверка связи с сервисами через определенный интервал
+// проверка связи с сервисами через определенный интервал
     setInterval(checkConn, 3000);
 
     function serverCheckConnInternet(callback) {
-        checkConnFromServer('http://google.ru', function (res) {
+        sService.checkConnection('http://google.ru', function (res) {
             callback(res);
-        });
-
+        })
     }
 }
