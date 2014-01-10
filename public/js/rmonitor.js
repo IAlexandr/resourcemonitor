@@ -76,4 +76,12 @@ function ServicesCtrl($scope, $http, sService) {
         return res;
     }
 
+    $scope.deleteService = function (service) {
+        $scope.services = _.without($scope.services, service);
+        newarrayservices = filtServices($scope.services);
+        $http.post('/services', newarrayservices)
+            .success(function (res) {
+                alert('Сервис удален!');
+            });
+    }
 }
