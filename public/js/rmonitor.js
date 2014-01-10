@@ -2,24 +2,7 @@
  * Created by aivanov on 03.01.14.
  */
 
-var serviceModule = angular.module('ServiceModule', []);
-
-serviceModule.factory('sService', ['$http', function ($http) {
-    var services = {};
-    services.get = function (callback) {
-        return $http.get('/services').success(function (res) {
-            callback(res);
-            return res;
-        });
-    };
-    services.checkConnection = function (url, callback) {
-        $http.get('/testurl?url=' + url, {cache: false}).success(function (res) {
-            callback(res);
-        });
-    };
-    return services;
-}])
-serviceModule.controller('ServicesCtrl', function ($scope, $http, sService) {
+function ServicesCtrl($scope, $http, sService) {
     $scope.services = sService.get(function (res) {
         $scope.services = res;
         $scope.viewStatusServer = '';
@@ -27,7 +10,7 @@ serviceModule.controller('ServicesCtrl', function ($scope, $http, sService) {
             value.iconclass = 'glyphicon glyphicon-refresh';
             value.servericonclass = 'glyphicon glyphicon-refresh';
         });
-        //checkConn();
+        checkConn();
     });
 
     function checkConn() {
@@ -83,4 +66,4 @@ serviceModule.controller('ServicesCtrl', function ($scope, $http, sService) {
                 alert('Сервис добавлен!');
             });
     }
-});
+}
