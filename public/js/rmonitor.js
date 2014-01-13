@@ -59,13 +59,13 @@ function ServicesCtrl($scope, $http, sService) {
         // выбрать массив без лишних полей. и запостить.
         var name = $scope.search.name;
         var address = $scope.search.FeatureServiceUrl;
-        var ser = {"name": name, "FeatureServiceUrl": address};
+        var ser = {"name": name, "FeatureServiceUrl": address, servericonclass: "glyphicon glyphicon-refresh", iconclass: "glyphicon glyphicon-refresh"};
         $scope.services.push(ser);
         var newarrayservices = filtServices($scope.services);
         sService.post(newarrayservices, function (res) {
             $scope.search.name = "";
             $scope.search.FeatureServiceUrl = "";
-            toastr.success("", "Сервис добавлен.");
+            toastr.success("", 'Сервис "'+service.name+'" добавлен.');
         });
     }
     function filtServices(arr) {
@@ -81,7 +81,7 @@ function ServicesCtrl($scope, $http, sService) {
         $scope.services = _.without($scope.services, service);
         newarrayservices = filtServices($scope.services);
         sService.post(newarrayservices,function (res) {
-            toastr.success("", "Сервис удален.");
+            toastr.success("", 'Сервис "'+service.name+'" удален.');
         });
     }
 }
