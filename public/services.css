@@ -15,6 +15,7 @@
 }
 .tableBody{
     background-color: rgba(238, 231, 234, 0.31);
+    max-width: 700px;
 }
 .serviceName {
     width:180px;
