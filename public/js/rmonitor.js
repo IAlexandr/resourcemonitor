@@ -9,6 +9,7 @@ function ServicesCtrl($scope, $http, sService) {
         angular.forEach($scope.services, function (value, key) {
             value.iconclass = 'glyphicon glyphicon-refresh';
             value.servericonclass = 'glyphicon glyphicon-refresh';
+            value.active = false;
         });
         checkConn();
     });
@@ -54,6 +55,10 @@ function ServicesCtrl($scope, $http, sService) {
             callback(res);
         })
     };
+
+    $scope.test = function (service) {
+        service.active = !service.active;
+    }
 
     $scope.addService = function () {
         // выбрать массив без лишних полей. и запостить.
