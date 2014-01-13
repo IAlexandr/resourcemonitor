@@ -16,3 +16,9 @@
 .tableBody{
     background-color: rgba(238, 231, 234, 0.31);
 }
+.serviceName {
+    width:180px;
+}
+.serviceAddress {
+     width:700px;
+ }
