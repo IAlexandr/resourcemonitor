@@ -65,7 +65,7 @@ function ServicesCtrl($scope, $http, sService) {
         sService.post(newarrayservices, function (res) {
             $scope.search.name = "";
             $scope.search.FeatureServiceUrl = "";
-            alert('Сервис добавлен!');
+            toastr.success("", "Сервис добавлен.");
         });
     }
     function filtServices(arr) {
@@ -81,7 +81,7 @@ function ServicesCtrl($scope, $http, sService) {
         $scope.services = _.without($scope.services, service);
         newarrayservices = filtServices($scope.services);
         sService.post(newarrayservices,function (res) {
-            alert('Сервис удален!');
+            toastr.success("", "Сервис удален.");
         });
     }
 }
