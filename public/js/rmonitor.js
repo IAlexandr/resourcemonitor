@@ -65,7 +65,7 @@ function ServicesCtrl($scope, $http, sService) {
         sService.post(newarrayservices, function (res) {
             $scope.search.name = "";
             $scope.search.FeatureServiceUrl = "";
-            toastr.success("", 'Сервис "'+service.name+'" добавлен.');
+            toastr.success("", 'Сервис добавлен.');
         });
     }
     function filtServices(arr) {
