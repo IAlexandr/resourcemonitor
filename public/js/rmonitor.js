@@ -62,10 +62,9 @@ function ServicesCtrl($scope, $http, sService) {
         var ser = {"name": name, "FeatureServiceUrl": address};
         $scope.services.push(ser);
         var newarrayservices = filtServices($scope.services);
-        $http.post('/services', newarrayservices)
-            .success(function (res) {
+        sService.post(newarrayservices,function (res) {
                 alert('Сервис добавлен!');
-            });
+        });
     }
     function filtServices(arr) {
         var res = [];
@@ -79,9 +78,8 @@ function ServicesCtrl($scope, $http, sService) {
     $scope.deleteService = function (service) {
         $scope.services = _.without($scope.services, service);
         newarrayservices = filtServices($scope.services);
-        $http.post('/services', newarrayservices)
-            .success(function (res) {
-                alert('Сервис удален!');
-            });
+        sService.post(newarrayservices,function (res) {
+            alert('Сервис удален!');
+        });
     }
 }
