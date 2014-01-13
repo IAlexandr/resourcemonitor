@@ -62,8 +62,10 @@ function ServicesCtrl($scope, $http, sService) {
         var ser = {"name": name, "FeatureServiceUrl": address};
         $scope.services.push(ser);
         var newarrayservices = filtServices($scope.services);
-        sService.post(newarrayservices,function (res) {
-                alert('Сервис добавлен!');
+        sService.post(newarrayservices, function (res) {
+            $scope.search.name = "";
+            $scope.search.FeatureServiceUrl = "";
+            alert('Сервис добавлен!');
         });
     }
     function filtServices(arr) {
