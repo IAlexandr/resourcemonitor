@@ -16,5 +16,11 @@ serviceModule.factory('sService', ['$http', function ($http) {
             callback(res);
         });
     };
+    services.post = function (newarrayservices, callback) {
+        $http.post('/services', newarrayservices)
+            .success(function (res) {
+                callback(res);
+            });
+    };
     return services;
 }])
