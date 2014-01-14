@@ -30,9 +30,18 @@
     word-wrap: break-word;
 }
 
-.btn-delete-false{
-     display: none;
- }
-.btn-delete-true{
+.btn-danger {
+    display: none;
+}
+.table>tbody>tr>td{
+    line-height: 2.8 !important;
+}
+tr:hover td button.btn-danger {
     display: block;
+}
+.btndelete{
+    min-width: 107px;
+}
+.btnadd{
+    min-width: 107px;
 }
