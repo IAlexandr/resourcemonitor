@@ -13,7 +13,7 @@ var app = express();
 app.use(express.logger('dev')); // Вывод отладочных сообщений в консоль
 app.use(baseUrl + '/', express.static(__dirname + '/public'));
 app.use(express.bodyParser());
-
+servdb.ensureDb();
 // маршруты
 app.get(baseUrl + '/testurl', function (req, res) {
     console.log(req.query);
