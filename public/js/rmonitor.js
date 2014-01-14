@@ -9,7 +9,6 @@ function ServicesCtrl($scope, $http, sService) {
         angular.forEach($scope.services, function (value, key) {
             value.iconclass = 'glyphicon glyphicon-refresh';
             value.servericonclass = 'glyphicon glyphicon-refresh';
-            value.active = false;
         });
         checkConn();
     });
