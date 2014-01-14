@@ -84,8 +84,8 @@ function ServicesCtrl($scope, $http, sService) {
     $scope.deleteService = function (service) {
         $scope.services = _.without($scope.services, service);
         newarrayservices = filtServices($scope.services);
-        sService.post(newarrayservices,function (res) {
-            toastr.success("", 'Сервис "'+service.name+'" удален.');
+        sService.post(newarrayservices, function (res) {
+            toastr.success("", 'Сервис "' + service.name + '" удален.');
         });
     }
 }
