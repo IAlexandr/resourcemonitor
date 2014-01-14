@@ -20,7 +20,7 @@ function ServicesCtrl($scope, $http, sService) {
                 if (res == 'true') {
                     $scope.viewStatusServer = '';
                     sService.checkConnection(value.FeatureServiceUrl, function (r) {
-                        if (r) {
+                        if (r == 'true') {
                             value.statusServer = "ok";
                             value.servericonclass = 'glyphicon glyphicon-ok-sign';
                         } else {
