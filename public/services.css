@@ -1,13 +1,16 @@
 .status-ok{
     background-color:rgba(126, 238, 145, 0.31);
     color: green;
+    padding: 5px;
 }
 .status-bad{
     background-color:rgba(238, 139, 136, 0.31);
     color:red;
+    padding: 5px;
 }
 .status-{
     background-color:rgba(238, 231, 234, 0.31);
+    padding: 5px;
 }
 
 .tableHead{
@@ -44,4 +47,9 @@ tr:hover td button.btn-danger {
 }
 .btnadd{
     min-width: 107px;
+}
+
+.boxCentr>p{
+    margin: 5px 0px;
+    text-align: center;
 }

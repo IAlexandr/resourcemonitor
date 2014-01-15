@@ -75,7 +75,7 @@ function ServicesCtrl($scope, $http, sService) {
     function filtServices(arr) {
         var res = [];
         _.each(arr, function (r) {
-            var filtServices = _.pick(r, 'name', 'FeatureServiceUrl');
+            var filtServices = _.pick(r, 'name', 'FeatureServiceUrl', 'id');
             res.push(filtServices);
         });
         return res;
