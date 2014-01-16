@@ -1,7 +1,9 @@
 /**
  * Created by aivanov on 03.01.14.
  */
+var timer;
 serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'sService', function ($scope, $http, sService) {
+    clearTimeout(timer);
     $scope.services = sService.get(function (res) {
         $scope.services = res;
         $scope.viewStatusServer = '';
@@ -46,7 +48,13 @@ serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'sService', functio
     }
 
 // проверка связи с сервисами через определенный интервал
-    setInterval(checkConn, 10000);
+   // setInterval(checkConn, 10000);
+
+    timer = setTimeout(function run() {
+        checkConn();
+        timer = setTimeout(run, 10000);
+    }, 1000);
+
 
     function serverCheckConnInternet(callback) {
         sService.checkConnection('http://google.ru', function (res) {
