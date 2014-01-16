@@ -1,8 +1,7 @@
 /**
  * Created by aivanov on 03.01.14.
  */
-
-function ServicesCtrl($scope, $http, sService) {
+serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'sService', function ($scope, $http, sService) {
     $scope.services = sService.get(function (res) {
         $scope.services = res;
         $scope.viewStatusServer = '';
@@ -47,7 +46,7 @@ function ServicesCtrl($scope, $http, sService) {
     }
 
 // проверка связи с сервисами через определенный интервал
-    setInterval(checkConn, 3000);
+    setInterval(checkConn, 10000);
 
     function serverCheckConnInternet(callback) {
         sService.checkConnection('http://google.ru', function (res) {
@@ -88,4 +87,4 @@ function ServicesCtrl($scope, $http, sService) {
             toastr.success("", 'Сервис "' + service.name + '" удален.');
         });
     }
-}
+}]);
