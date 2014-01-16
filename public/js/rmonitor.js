@@ -79,10 +79,11 @@ serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'sService', functio
             toastr.success("", 'Сервис добавлен.');
         });
     }
+
     function filtServices(arr) {
         var res = [];
         _.each(arr, function (r) {
-            var filtServices = _.pick(r, 'name', 'FeatureServiceUrl', 'id');
+            var filtServices = _.pick(r, 'name', 'FeatureServiceUrl', 'id', 'pX', 'pY');
             res.push(filtServices);
         });
         return res;
