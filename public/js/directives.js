@@ -9,7 +9,7 @@ serviceModule.directive('dragBox', function () {
             serv: '='
         },
         link: function (scope, element, attrs) {;
-            element.draggable({ cursor: "move", grid: [ 5, 5 ] });
+            element.draggable({ containment: "#containment-wrapper", cursor: "move", scroll: false });
         }
     }
 });
