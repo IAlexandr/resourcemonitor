@@ -1,0 +1,33 @@
+<form name="addServiceForm">
+    <table class="table">
+        <tr class="tableHead">
+            <th class="serviceName">Наименовование</th>
+            <th class="serviceAddress">Адрес</th>
+            <th>Браузер</th>
+            <th>Сервер <span style="color:red" class="{{viewStatusServer}}"></span></th>
+            <th></th>
+        </tr>
+        <tr class="tableBody">
+            <div class="control-group tableBody" ng-class="{error: addServiceForm.name.$invalid}">
+                <td>
+                    <input class="form-control" type="text" name="name" class="input" placeholder="Наименование" ng-model="search.name" required/>
+                </td>
+                <td>
+                    <input class="form-control" type="text" name="url" class="input" placeholder="Адрес" ng-model="search.FeatureServiceUrl" required/>
+                </td>
+                <td></td>
+                <td>&nbsp;</td>
+                <td class="btnadd">
+                    <button ng-show="!addServiceForm.$invalid" class="btn btn-primary" ng-click="addService()">Добавить</button>
+                </td>
+            </div>
+        </tr>
+        <tr ng-repeat="service in services | filter:search">
+            <td class="tableBody">{{ service.name }}</td>
+            <td class="tableBody"><a href="{{ service.FeatureServiceUrl}}">{{ service.FeatureServiceUrl}}</a></td>
+            <td class="status-{{ service.statusBrowser }}"><span class="{{service.iconclass}}"></span></td>
+            <td class="status-{{ service.statusServer }}"><span class="{{service.servericonclass}}"></span></td>
+            <td class="tableBody btndelete"><button class="btn btn-danger" ng-click="deleteService(service)">Удалить</button></td>
+        </tr>
+    </table>
+</form>
