@@ -3,10 +3,10 @@
  */
 var serviceModule = angular.module('ServiceModule', []);
 serviceModule.config(function ($routeProvider) {
-        $routeProvider.
-            when('/table', {templateUrl: 'partials/table.html', controller: 'ServicesCtrl'}).
-            when('/schema', {templateUrl: 'partials/schema.html', controller: 'ServicesCtrl'}).
-            otherwise({redirectTo: '/table'});
+        $routeProvider
+            .when('/table', {templateUrl: 'partials/table.html', controller: 'ServicesCtrl'})
+            .when('/schema', {templateUrl: 'partials/schema.html', controller: 'ServicesCtrl'})
+            .otherwise({redirectTo: '/table'});
     });
 
 serviceModule.factory('sService', ['$http', function ($http) {
