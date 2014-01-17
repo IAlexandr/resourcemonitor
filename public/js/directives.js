@@ -8,16 +8,17 @@ serviceModule.directive('dragBox', ['sService', function (sService) {
         scope: {
             serv: '='
         },
-        link: function (scope, element, attrs) {;
+        link: function (scope, element, attrs) {
             element.draggable({
-                stop: function(evt) {
-                    scope.serv.pX = evt.pageX;
-                    scope.serv.pY = evt.pageY;
+                stop: function(evt, ui) {
+                    var se = scope.serv;
+                    se.pX = ui.position.left;
+                    se.pY = ui.position.top;
                     var newarr = [];
                     sService.get(function (res) {
                         _.each(res, function (val) {
-                            if (scope.serv.name == val.name){
-                                val = scope.serv;
+                            if (se.name == val.name){
+                                val = se;
                             }
                             newarr.push(_.pick(val, 'name', 'FeatureServiceUrl', 'id', 'pX', 'pY'));
                         });
