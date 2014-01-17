@@ -54,8 +54,4 @@ tr:hover td button.btn-danger {
     text-align: center;
 }
 
-.draggable {
-  width: 100px; height: 100px; padding: 0.5em; float: left;
-}
-
-#containment-wrapper { width: 100%; height: 500px; border:2px solid #ccc; padding: 0 85px 101px 0;}
+#containment-wrapper { width: 100%; height: 500px; border:2px solid #ccc; }
