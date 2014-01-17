@@ -1,14 +1,13 @@
 /**
  * Created by aivanov on 10.01.14.
  */
-var serviceModule = angular.module('ServiceModule', []);
+var serviceModule = angular.module('ServiceModule', ['ngRoute'])
 serviceModule.config(function ($routeProvider) {
-        $routeProvider
+    $routeProvider
             .when('/table', {templateUrl: 'partials/table.html', controller: 'ServicesCtrl'})
             .when('/schema', {templateUrl: 'partials/schema.html', controller: 'ServicesCtrl'})
             .otherwise({redirectTo: '/table'});
     });
-
 serviceModule.factory('sService', ['$http', function ($http) {
         var services = {};
         services.get = function (callback) {
