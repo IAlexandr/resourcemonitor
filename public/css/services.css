@@ -67,3 +67,6 @@ tr:hover td button.btn-danger {
     width: 100%;
     height: 500px;
 }
+.drag-panel{
+    cursor:pointer;
+}
