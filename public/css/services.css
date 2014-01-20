@@ -1,30 +1,35 @@
-.status-ok{
-    background-color:rgba(126, 238, 145, 0.31);
+.status-ok {
+    background-color: rgba(126, 238, 145, 0.31);
     color: green;
     padding: 5px;
 }
-.status-bad{
-    background-color:rgba(238, 139, 136, 0.31);
-    color:red;
-    padding: 5px;
-}
-.status-{
-    background-color:rgba(238, 231, 234, 0.31);
+
+.status-bad {
+    background-color: rgba(238, 139, 136, 0.31);
+    color: red;
     padding: 5px;
 }
 
-.tableHead{
+.status- {
+    background-color: rgba(238, 231, 234, 0.31);
+    padding: 5px;
+}
+
+.tableHead {
     background-color: rgba(147, 145, 143, 0.31);
 }
-.tableBody{
+
+.tableBody {
     background-color: rgba(238, 231, 234, 0.31);
 }
+
 .serviceName {
-    width:180px;
+    width: 180px;
 }
+
 .serviceAddress {
-     width:700px;
- }
+    width: 700px;
+}
 
 .table tr td {
     text-align: center;
@@ -36,22 +41,29 @@
 .btn-danger {
     display: none;
 }
-.table>tbody>tr>td{
+
+.table > tbody > tr > td {
     line-height: 2.8 !important;
 }
+
 tr:hover td button.btn-danger {
     display: block;
 }
-.btndelete{
-    min-width: 107px;
-}
-.btnadd{
+
+.btndelete {
     min-width: 107px;
 }
 
-.boxCentr>p{
+.btnadd {
+    min-width: 107px;
+}
+
+.boxCentr > p {
     margin: 5px 0px;
     text-align: center;
 }
 
-#containment-wrapper { width: 100%; height: 500px;}
+#containment-wrapper {
+    width: 100%;
+    height: 500px;
+}
