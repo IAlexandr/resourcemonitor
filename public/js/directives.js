@@ -36,3 +36,33 @@ serviceModule.directive('dragBox', ['sService', function (sService) {
         }
     }
 }]);
+
+serviceModule.directive('contWrap', ['setElemSize', function (setElemSize) {
+    return {
+        templateUrl: "htmltemplates/containmentwrapper.html",
+        restrict: 'EAC',
+        controller: function ($scope, $element, $attrs) {
+            $scope.$on("$destroy", function () {
+                $(window).off("resize", $scope.setsize);
+            });
+        },
+        link: function (scope, element, attrs) {
+            var el = element;
+
+            scope.setsize = function () {
+                setElemSize.set(el);
+            }
+            scope.setsize();
+            $(window).on("resize", scope.setsize);
+            element.attr('unselectable', 'on').select(function () {
+                return false
+            }).css({
+                    '-moz-user-select': '-moz-none',
+                    '-o-user-select': 'none',
+                    '-khtml-user-select': 'none',
+                    '-webkit-user-select': 'none',
+                    'user-select': 'none'
+                });
+        }
+    }
+}]);
