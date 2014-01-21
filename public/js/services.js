@@ -29,4 +29,13 @@ serviceModule.factory('sService', ['$http', function ($http) {
     };
     return services;
 }]);
-
+serviceModule.factory('setElemSize', function () {
+    var services = {};
+    services.set = function (elem) {
+        var w = $(window).width();
+        var h = $(window).height() - 77;
+        elem.width(w);
+        elem.height(h);
+    };
+    return services;
+});
