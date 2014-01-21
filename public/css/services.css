@@ -82,3 +82,17 @@ tr:hover td button.btn-danger {
 .navbar-nav>li>a {
     line-height: 0px;
 }
+.navbar {
+    position: relative;
+    max-height: 50px;
+    margin-bottom: 0px;
+    border: 0px solid transparent;
+}
+
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0px;
+}
+
+.glyphicon:empty {
+    width: auto;
+}
