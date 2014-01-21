@@ -22,7 +22,7 @@
 </head>
 <body>
 <div ng-app="ServiceModule">
-    <div ng-controller="ServicesCtrl" class="container">
+    <div ng-controller="ServicesCtrl">
         <nav class="navbar navbar-default" role="navigation">
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -31,7 +31,7 @@
                     <li ng-class="schemaActive"><a href="#/schema">Схема</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="btn btn-default" onclick="clearCanvas()">Очистить</a></li>
+                    <li><a class="btn btn-default" id="clearBtn" type="button">Очистить</a></li>
                     <li>&nbsp;</li>
                     <li><a class="btn btn-default" id="choosePurpleSimpleColors" type="button">Purple</a></li>
                     <li><a class="btn btn-default" id="chooseGreenSimpleColors" type="button">Green</a></li>
