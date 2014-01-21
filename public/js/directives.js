@@ -66,3 +66,127 @@ serviceModule.directive('contWrap', ['setElemSize', function (setElemSize) {
         }
     }
 }]);
+
+serviceModule.directive('descriptDrawing', ['setElemSize', function (setElemSize) {
+    return {
+        template: "",
+        controller: function ($scope, $element, $attrs) {
+            $scope.$on("$destroy", function () {
+                $(window).off("resize", $scope.setsize);
+                $(window).off("resize", $scope.redraw);
+                $("body").css("overflow","scroll");
+            });
+        },
+        scope: true,
+        link: function (scope, element, attrs) {
+            var el = element;
+
+            scope.setsize = function () {
+                setElemSize.set(el);
+                var ww = el.css('width');
+                var hh = el.css('height');
+                var w = parseInt(ww);
+                var h = parseInt(hh)
+                el.attr({width: w, height: h});
+                scope.redraw();
+            }
+            scope.prepareCanvas = function () {
+                $("body").css("overflow","hidden");
+                context = canvas.getContext("2d");
+
+                element.mousedown(function (e) {
+                    var mouseX = e.pageX - this.offsetLeft;
+                    var mouseY = e.pageY - this.offsetTop;
+
+                    paint = true;
+                    scope.addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
+                    scope.redraw();
+                });
+
+                element.mousemove(function (e) {
+                    if (paint) {
+                        scope.addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+                        scope.redraw();
+                    }
+                });
+
+                element.mouseup(function (e) {
+                    paint = false;
+                });
+                element.mouseleave(function (e) {
+                    //paint = false;
+                });
+
+                colorPurple = "#cb3594";
+                colorGreen = "#659b41";
+                colorYellow = "#ffcf33";
+                colorBrown = "#986928";
+
+                curColor = colorPurple;
+                $('#clearBtn').mousedown(function (e) {
+                    scope.clearCanvas();
+                });
+                $('#choosePurpleSimpleColors').mousedown(function (e) {
+                    curColor = colorPurple;
+                });
+                $('#chooseGreenSimpleColors').mousedown(function (e) {
+                    curColor = colorGreen;
+                });
+                $('#chooseYellowSimpleColors').mousedown(function (e) {
+                    curColor = colorYellow;
+                });
+                $('#chooseBrownSimpleColors').mousedown(function (e) {
+                    curColor = colorBrown;
+                });
+
+                clickColor = new Array();
+                clickX = new Array();
+                clickY = new Array();
+                clickDrag = new Array();
+                var paint;
+            }
+
+            scope.addClick = function (x, y, dragging) {
+                clickX.push(x);
+                clickY.push(y);
+                clickDrag.push(dragging);
+                clickColor.push(curColor);
+            }
+
+            scope.redraw = function () {
+                context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+
+                context.strokeStyle = "#df4b26";
+                context.lineJoin = "round";
+                context.lineWidth = 5;
+
+                for (var i = 0; i < clickX.length; i++) {
+                    context.beginPath();
+                    if (clickDrag[i] && i) {
+                        context.moveTo(clickX[i - 1], clickY[i - 1]);
+                    } else {
+                        context.moveTo(clickX[i] - 1, clickY[i]);
+                    }
+                    context.lineTo(clickX[i], clickY[i]);
+                    context.closePath();
+                    context.strokeStyle = clickColor[i];
+
+                    context.stroke();
+                }
+            }
+
+            scope.clearCanvas = function () {
+                clickX = new Array();
+                clickY = new Array();
+                clickDrag = new Array();
+                clickColor = new Array();
+                context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+            }
+
+
+            scope.prepareCanvas();
+            scope.setsize();
+            $(window).on("resize", scope.setsize);
+        }
+    }
+}]);
