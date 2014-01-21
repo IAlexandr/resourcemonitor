@@ -33,7 +33,7 @@ serviceModule.factory('setElemSize', function () {
     var services = {};
     services.set = function (elem) {
         var w = $(window).width();
-        var h = $(window).height() - 77;
+        var h = $(window).height() - 53;
         elem.width(w);
         elem.height(h);
     };
