@@ -74,7 +74,7 @@ serviceModule.directive('descriptDrawing', ['setElemSize', function (setElemSize
             $scope.$on("$destroy", function () {
                 $(window).off("resize", $scope.setsize);
                 $(window).off("resize", $scope.redraw);
-                $("body").css("overflow","scroll");
+                $("body").css("overflow","auto");
             });
         },
         scope: true,
@@ -121,7 +121,8 @@ serviceModule.directive('descriptDrawing', ['setElemSize', function (setElemSize
                 colorGreen = "#659b41";
                 colorYellow = "#ffcf33";
                 colorBrown = "#986928";
-
+                colorWhite = "#ffffff";
+                colorBlack = "#000000";
                 curColor = colorPurple;
                 $('#clearBtn').mousedown(function (e) {
                     scope.clearCanvas();
@@ -138,7 +139,12 @@ serviceModule.directive('descriptDrawing', ['setElemSize', function (setElemSize
                 $('#chooseBrownSimpleColors').mousedown(function (e) {
                     curColor = colorBrown;
                 });
-
+                $('#chooseWhiteSimpleColors').mousedown(function (e) {
+                    curColor = colorWhite;
+                });
+                $('#chooseBlackSimpleColors').mousedown(function (e) {
+                    curColor = colorBlack;
+                });
                 clickColor = new Array();
                 clickX = new Array();
                 clickY = new Array();
