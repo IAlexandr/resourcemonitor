@@ -25,18 +25,17 @@
     <div ng-controller="ServicesCtrl">
         <nav class="navbar navbar-default" role="navigation">
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li ng-class="tableActive"><a href="#/table">Таблица</a></li>
-                    <li ng-class="schemaActive"><a href="#/schema">Схема</a></li>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="NavCtrl">
+                <ul class="nav navbar-nav" >
+                    <li ng-class="tableActive"><a class="btn navbar-btn" type="button" href="#/table">Таблица</a></li>
+                    <li ng-class="schemaActive"><a class="btn navbar-btn" type="button" href="#/schema">Схема</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a class="btn btn-default" id="clearBtn" type="button">Очистить</a></li>
-                    <li>&nbsp;</li>
-                    <li><a class="btn btn-default" id="choosePurpleSimpleColors" type="button">Purple</a></li>
-                    <li><a class="btn btn-default" id="chooseGreenSimpleColors" type="button">Green</a></li>
-                    <li><a class="btn btn-default" id="chooseYellowSimpleColors" type="button">Yellow</a></li>
-                    <li><a class="btn btn-default" id="chooseBrownSimpleColors" type="button">Brown</a></li>
+                <ul ng-show="schemaActive" class="nav navbar-nav navbar-right">
+                    <li><a class="btn navbar-btn" id="clearBtn" type="button">Очистить</a></li>
+                    <li><a class="btn navbar-btn" id="choosePurpleSimpleColors" type="button">Purple</a></li>
+                    <li><a class="btn navbar-btn" id="chooseGreenSimpleColors" type="button">Green</a></li>
+                    <li><a class="btn navbar-btn" id="chooseYellowSimpleColors" type="button">Yellow</a></li>
+                    <li><a class="btn navbar-btn" id="chooseBrownSimpleColors" type="button">Brown</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

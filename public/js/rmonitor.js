@@ -1,6 +1,23 @@
 /**
  * Created by aivanov on 03.01.14.
  */
+serviceModule.controller('NavCtrl', ['$scope', '$location', function ($scope, $location) {
+    $scope.curPath = $location.path();
+
+    $scope.$on('$locationChangeSuccess', function (event, newLoc, oldLoc){
+        $scope.tableActive = '';
+        $scope.schemaActive = '';
+        switch ($location.path()){
+            case "/table":
+                $scope.tableActive = 'active';
+                break;
+            case "/schema":
+                $scope.schemaActive = 'active';
+                break;
+        }
+
+    });
+}]);
 
 serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'sService', function ($scope, $http, sService) {
     var timer;
