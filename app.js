@@ -32,6 +32,15 @@ app.post(baseUrl + '/services', function (req, res) {
     res.send('ok');
 });
 
+app.get(baseUrl + '/img', function (req, res) {
+    res.send(servdb.getImg());
+});
+
+app.post(baseUrl + '/img', function (req, res) {
+    servdb.saveImg(req.body);
+    res.send('ok');
+});
+
 app.get(baseUrl + '/', function (req, res) {
     res.send(404, 'Not found');
 });
