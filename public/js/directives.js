@@ -67,7 +67,7 @@ serviceModule.directive('contWrap', ['setElemSize', function (setElemSize) {
     }
 }]);
 
-serviceModule.directive('descriptDrawing', ['setElemSize', function (setElemSize) {
+serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function (setElemSize, sService) {
     return {
         template: "",
         controller: function ($scope, $element, $attrs) {
@@ -93,7 +93,11 @@ serviceModule.directive('descriptDrawing', ['setElemSize', function (setElemSize
             scope.prepareCanvas = function () {
                 $("body").css("overflow","hidden");
                 context = canvas.getContext("2d");
-
+                var rrr = sService.getImg(function (res) {
+                    var img = new Image();
+                    img.src = res.image;
+                    context.drawImage(img,0,0);
+                });
                 element.mousedown(function (e) {
                     var mouseX = e.pageX - this.offsetLeft;
                     var mouseY = e.pageY - this.offsetTop;
@@ -124,6 +128,14 @@ serviceModule.directive('descriptDrawing', ['setElemSize', function (setElemSize
                 colorWhite = "#ffffff";
                 colorBlack = "#000000";
                 curColor = colorPurple;
+                $('#downloadBtn').mousedown(function (e) {
+                    var mime;
+                    mime = "image/png";
+                    var data =  canvas.toDataURL(mime);
+                    sService.postImg(data, function (res) {
+                        toastr.success("", 'Схема сохранена.');
+                    });
+                });
                 $('#clearBtn').mousedown(function (e) {
                     scope.clearCanvas();
                 });
@@ -160,7 +172,7 @@ serviceModule.directive('descriptDrawing', ['setElemSize', function (setElemSize
             }
 
             scope.redraw = function () {
-                context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+               // context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
 
                 context.strokeStyle = "#df4b26";
                 context.lineJoin = "round";
