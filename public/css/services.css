@@ -96,3 +96,22 @@ tr:hover td button.btn-danger {
 .glyphicon:empty {
     width: auto;
 }
+
+#chooseWhiteSimpleColors {
+    background-color: #ffffff;
+}
+#choosePurpleSimpleColors{
+    background-color: #cb3594;
+}
+#chooseGreenSimpleColors {
+    background-color: #659b41;
+ }
+#chooseYellowSimpleColors{
+    background-color: #ffcf33;
+}
+#chooseBrownSimpleColors {
+    background-color: #986928;
+ }
+#chooseBlackSimpleColors{
+    background-color: #000000;
+}
