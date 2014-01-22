@@ -27,6 +27,19 @@ serviceModule.factory('sService', ['$http', function ($http) {
                 callback(res);
             });
     };
+    services.getImg = function (callback) {
+        return $http.get('img', {cache: false}).success(function (res) {
+            callback(res);
+            return res;
+        });
+    };
+    services.postImg = function (data, callback) {
+        var imgobj = { 'image' : data };
+        $http.post('img', imgobj)
+            .success(function (res) {
+                callback(res);
+            });
+    }
     return services;
 }]);
 serviceModule.factory('setElemSize', function () {
