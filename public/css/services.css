@@ -70,7 +70,7 @@ tr:hover td button.btn-danger {
 
 .drag-panel {
     cursor: pointer;
-    max-height: 110px;
+    max-height: 76px;
     position: absolute;
     opacity: 1;
 }
