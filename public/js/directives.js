@@ -1,7 +1,7 @@
 /**
  * Created by aivanov on 15.01.14.
  */
-
+// перетаскиваемая панель сервиса.
 serviceModule.directive('dragBox', ['sService', function (sService) {
     return {
         templateUrl: "htmltemplates/dragBox.html",
@@ -11,24 +11,24 @@ serviceModule.directive('dragBox', ['sService', function (sService) {
         link: function (scope, element, attrs) {
             element.draggable({
                 stop: function (evt, ui) {
-                    var se = scope.serv;
+                    var se = scope.serv;                    // сервис
                     se.pX = ui.position.left;
                     se.pY = ui.position.top;
                     var newarr = [];
-                    sService.get(function (res) {
+                    sService.get(function (res) {           // получение списка сервисов.
                         _.each(res, function (val) {
                             if (se.name == val.name) {
                                 val = se;
                             }
-                            newarr.push(_.pick(val, 'name', 'FeatureServiceUrl', 'id', 'pX', 'pY'));
+                            newarr.push(_.pick(val, 'name', 'FeatureServiceUrl', 'id', 'pX', 'pY'));    // добавление сервиса в массив только с перечисленными полями.
                         });
-                        sService.post(newarr, function (res) {
-                            var t = res;
+                        sService.post(newarr, function (res) {  // отправка массива с измененными координатами на сервер
+                            var t = res;// сделать проверку на ответ, возможно выводить в тостере инф. сообщение об ошибке.
                         });
                         return res;
                     });
                 },
-                containment: "#containment-wrapper",
+                containment: "#containment-wrapper",    // див за пределы которого нельзя передвигать панель.
                 cursor: "move",
                 scroll: false,
                 opacity: 0.80
