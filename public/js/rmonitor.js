@@ -96,7 +96,7 @@ serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'sService', functio
         // выбрать массив без лишних полей. и запостить.
         var name = $scope.search.name;
         var address = $scope.search.FeatureServiceUrl;
-        var ser = {"name": name, "FeatureServiceUrl": address, servericonclass: "glyphicon glyphicon-refresh", iconclass: "glyphicon glyphicon-refresh", pX: 0, pY: 0};
+        var ser = {"name": name, "FeatureServiceUrl": address, servericonclass: "glyphicon glyphicon-refresh", iconclass: "glyphicon glyphicon-refresh", pX: 0, pY: 50};
         $scope.services.push(ser);
         var newarrayservices = filtServices($scope.services);
         sService.post(newarrayservices, function (res) {
