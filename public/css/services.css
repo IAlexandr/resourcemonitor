@@ -115,3 +115,18 @@ tr:hover td button.btn-danger {
 #chooseBlackSimpleColors{
     background-color: #000000;
 }
+table.table th {
+    text-align: center;
+}
+td.tableBody.btndelete {
+    width: 125px;
+}
+tr:hover td button.btn-danger {
+    display: inline-table;
+}
+.tableBody.fixWidth {
+    max-width: 200px;
+}
+.fixwidth {
+    width: 50px;
+}
