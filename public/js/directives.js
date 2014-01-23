@@ -39,7 +39,7 @@ serviceModule.directive('dragBox', ['sService', function (sService) {
 
 serviceModule.directive('boundingBox', ['setElemSize', '$window', function (setElemSize, $window) {
     return {
-        templateUrl: "htmltemplates/containmentwrapper.html",
+        templateUrl: "htmltemplates/boundingbox.html",
         restrict: 'EAC',
         link: function (scope, element, attrs) {
             var el = element;
