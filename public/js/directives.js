@@ -96,6 +96,14 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function 
                 el.attr({width: w, height: h});
                 scope.redraw();
             }
+            scope.saveCanvas = function () {
+                var mime;
+                mime = "image/png";
+                var data =  canvas.toDataURL(mime);
+                sService.postImg(data, function (res) {
+                    //toastr.success("", 'Схема сохранена.');
+                });
+            }
             scope.prepareCanvas = function () {
                 $("body").css("overflow","hidden");
                 context = canvas.getContext("2d");
