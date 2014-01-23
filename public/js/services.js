@@ -27,24 +27,23 @@ serviceModule.factory('servicesControl', ['$http', function ($http) {
                 callback(res);
             });
     };
-    services.getImg = function (callback) {
+    return services;
+}]);
+serviceModule.factory('schemaControl', function () {
+    var schema = {};
+    schema.getImg = function (callback) {
         return $http.get('img', {cache: false}).success(function (res) {
             callback(res);
             return res;
         });
     };
-    services.postImg = function (data, callback) {
+    schema.postImg = function (data, callback) {
         var imgobj = { 'image' : data };
         $http.post('img', imgobj)
             .success(function (res) {
                 callback(res);
             });
     }
-    return services;
-}]);
-serviceModule.factory('schemaControl', function () {
-    var schema = {};
-
     return schema;
 });
 serviceModule.factory('setElemNewSize', function () {
