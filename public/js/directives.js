@@ -37,7 +37,7 @@ serviceModule.directive('dragBox', ['sService', function (sService) {
     }
 }]);
 
-serviceModule.directive('contWrap', ['setElemSize', '$window', function (setElemSize, $window) {
+serviceModule.directive('boundingBox', ['setElemSize', '$window', function (setElemSize, $window) {
     return {
         templateUrl: "htmltemplates/containmentwrapper.html",
         restrict: 'EAC',
