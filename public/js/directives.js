@@ -37,7 +37,7 @@ serviceModule.directive('dragBox', ['sService', function (sService) {
     }
 }]);
 
-serviceModule.directive('boundingBox', ['setElemSize', '$window', function (setElemSize, $window) {
+serviceModule.directive('boundingBox', ['setElemNewSize', '$window', function (setElemNewSize, $window) {
     return {
         templateUrl: "htmltemplates/boundingbox.html",
         restrict: 'EAC',
@@ -45,7 +45,7 @@ serviceModule.directive('boundingBox', ['setElemSize', '$window', function (setE
             var el = element;
             var win = angular.element($window);
             scope.setsize = function () {
-                setElemSize.set(el);
+                setElemNewSize.set(el);
             }
             scope.setsize();
             win.on("resize", scope.setsize);
@@ -65,7 +65,7 @@ serviceModule.directive('boundingBox', ['setElemSize', '$window', function (setE
     }
 }]);
 
-serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', '$window', function (setElemSize, sService, $window) {
+serviceModule.directive('descriptDrawing', ['setElemNewSize', 'sService', '$window', function (setElemNewSize, sService, $window) {
     return {
         template: "",
         scope: {
@@ -80,7 +80,7 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', '$window'
                 curColor = c;
             });
             scope.setsize = function () {
-                setElemSize.set(el);
+                setElemNewSize.set(el);
                 var ww = el.css('width');
                 var hh = el.css('height');
                 var w = parseInt(ww);

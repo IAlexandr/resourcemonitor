@@ -42,7 +42,7 @@ serviceModule.factory('sService', ['$http', function ($http) {
     }
     return services;
 }]);
-serviceModule.factory('setElemSize', function () {
+serviceModule.factory('setElemNewSize', function () {
     var services = {};
     services.set = function (elem) {
         var w = $(window).width();
