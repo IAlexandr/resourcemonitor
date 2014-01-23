@@ -36,7 +36,6 @@ serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'servicesControl', 
         $scope.services = res;
         $scope.viewStatusServer = '';
         angular.forEach($scope.services, function (value, key) {
-            value.iconclass = 'glyphicon glyphicon-refresh';
             value.servericonclass = 'glyphicon glyphicon-refresh';
         });
         checkConn();
@@ -63,15 +62,6 @@ serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'servicesControl', 
                     value.servericonclass = 'glyphicon glyphicon-refresh';
                 }
             });
-            $http.get(value.FeatureServiceUrl)
-                .success(function (res) {
-                    value.statusBrowser = 'ok';
-                    value.iconclass = 'glyphicon glyphicon-ok-sign';
-                })
-                .error(function (data, status, headers, config) {
-                    value.statusBrowser = 'bad';
-                    value.iconclass = 'glyphicon glyphicon-minus-sign';
-                });
         });
     }
 
@@ -96,7 +86,7 @@ serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'servicesControl', 
         // выбрать массив без лишних полей. и запостить.
         var name = $scope.search.name;
         var address = $scope.search.FeatureServiceUrl;
-        var ser = {"name": name, "FeatureServiceUrl": address, servericonclass: "glyphicon glyphicon-refresh", iconclass: "glyphicon glyphicon-refresh", pX: 0, pY: 50};
+        var ser = {"name": name, "FeatureServiceUrl": address, servericonclass: "glyphicon glyphicon-refresh", pX: 0, pY: 50};
         $scope.services.push(ser);
         var newarrayservices = filtServices($scope.services);
         servicesControl.post(newarrayservices, function (res) {
