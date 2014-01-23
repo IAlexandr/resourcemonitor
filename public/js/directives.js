@@ -65,7 +65,7 @@ serviceModule.directive('boundingBox', ['setElemNewSize', '$window', function (s
     }
 }]);
 
-serviceModule.directive('descriptDrawing', ['setElemNewSize', 'servicesControl', '$window', function (setElemNewSize, servicesControl, $window) {
+serviceModule.directive('descriptDrawing', ['setElemNewSize', 'schemaControl', '$window', function (setElemNewSize, schemaControl, $window) {
     return {
         template: "",
         scope: {
@@ -92,7 +92,7 @@ serviceModule.directive('descriptDrawing', ['setElemNewSize', 'servicesControl',
                 var mime;
                 mime = "image/png";
                 var data = canvas.toDataURL(mime);
-                servicesControl.postImg(data, function (res) {
+                schemaControl.postImg(data, function (res) {
                     //toastr.success("", 'Схема сохранена.');
                 });
                 scope.img = new Image();
@@ -100,7 +100,7 @@ serviceModule.directive('descriptDrawing', ['setElemNewSize', 'servicesControl',
             scope.prepareCanvas = function () {
                 $("body").css("overflow", "hidden");
                 context = canvas.getContext("2d");
-                var rrr = servicesControl.getImg(function (res) {
+                var rrr = schemaControl.getImg(function (res) {
                     scope.img = new Image();
                     scope.img.src = res.image;
                     context.drawImage(scope.img, 0, 0);
