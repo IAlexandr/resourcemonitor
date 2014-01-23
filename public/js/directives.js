@@ -77,10 +77,16 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function 
                 $("body").css("overflow","auto");
             });
         },
-        scope: true,
+        scope: {
+            cl: '=',
+            clears: '='
+        },
         link: function (scope, element, attrs) {
             var el = element;
-
+            scope.img = new Image();
+            scope.$watch('cl', function (c) {
+                curColor = c;
+            });
             scope.setsize = function () {
                 setElemSize.set(el);
                 var ww = el.css('width');
