@@ -180,7 +180,6 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function 
                 scope.saveCanvas();
             }
 
-            scope.saveCanvas();
             scope.prepareCanvas();
             scope.setsize();
             $(window).on("resize", scope.setsize);
