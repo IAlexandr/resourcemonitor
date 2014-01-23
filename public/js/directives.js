@@ -103,6 +103,7 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function 
                 sService.postImg(data, function (res) {
                     //toastr.success("", 'Схема сохранена.');
                 });
+                scope.img = new Image();
             }
             scope.prepareCanvas = function () {
                 $("body").css("overflow","hidden");
