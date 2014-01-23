@@ -3,7 +3,12 @@
  */
 serviceModule.controller('NavCtrl', ['$scope', '$location', function ($scope, $location) {
     $scope.curPath = $location.path();
-
+    $scope.$watch('clr', function (c) {
+        $scope.$parent.clr = c;
+    });
+    $scope.$watch('clear', function (c) {
+        $scope.$parent.clear = c;
+    });
     $scope.$on('$locationChangeSuccess', function (event, newLoc, oldLoc){
         $scope.tableActive = '';
         $scope.schemaActive = '';
@@ -21,6 +26,9 @@ serviceModule.controller('NavCtrl', ['$scope', '$location', function ($scope, $l
 
 serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'sService', function ($scope, $http, sService) {
     var timer;
+    $scope.clear = function (){
+
+    };
     $scope.$on('$destroy', function iVeBeenDismissed() {
         clearTimeout(timer);
     });
