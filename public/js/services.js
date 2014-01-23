@@ -29,7 +29,7 @@ serviceModule.factory('servicesControl', ['$http', function ($http) {
     };
     return services;
 }]);
-serviceModule.factory('schemaControl', function () {
+serviceModule.factory('schemaControl', ['$http', function ($http) {
     var schema = {};
     schema.getImg = function (callback) {
         return $http.get('img', {cache: false}).success(function (res) {
@@ -45,7 +45,7 @@ serviceModule.factory('schemaControl', function () {
             });
     }
     return schema;
-});
+}]);
 serviceModule.factory('setElemNewSize', function () {
     var services = {};
     services.set = function (elem) {
