@@ -2,7 +2,7 @@
  * Created by aivanov on 15.01.14.
  */
 // перетаскиваемая панель сервиса.
-serviceModule.directive('dragBox', ['sService', function (sService) {
+serviceModule.directive('dragBox', ['servicesControl', function (servicesControl) {
     return {
         templateUrl: "htmltemplates/dragBox.html",
         scope: {
@@ -15,14 +15,14 @@ serviceModule.directive('dragBox', ['sService', function (sService) {
                     se.pX = ui.position.left;
                     se.pY = ui.position.top;
                     var newarr = [];
-                    sService.get(function (res) {           // получение списка сервисов.
+                    servicesControl.get(function (res) {           // получение списка сервисов.
                         _.each(res, function (val) {
                             if (se.name == val.name) {
                                 val = se;
                             }
                             newarr.push(_.pick(val, 'name', 'FeatureServiceUrl', 'id', 'pX', 'pY'));    // добавление сервиса в массив только с перечисленными полями.
                         });
-                        sService.post(newarr, function (res) {  // отправка массива с измененными координатами на сервер
+                        servicesControl.post(newarr, function (res) {  // отправка массива с измененными координатами на сервер
                             var t = res;// сделать проверку на ответ, возможно выводить в тостере инф. сообщение об ошибке.
                         });
                         return res;
@@ -65,7 +65,7 @@ serviceModule.directive('boundingBox', ['setElemNewSize', '$window', function (s
     }
 }]);
 
-serviceModule.directive('descriptDrawing', ['setElemNewSize', 'sService', '$window', function (setElemNewSize, sService, $window) {
+serviceModule.directive('descriptDrawing', ['setElemNewSize', 'servicesControl', '$window', function (setElemNewSize, servicesControl, $window) {
     return {
         template: "",
         scope: {
@@ -92,7 +92,7 @@ serviceModule.directive('descriptDrawing', ['setElemNewSize', 'sService', '$wind
                 var mime;
                 mime = "image/png";
                 var data = canvas.toDataURL(mime);
-                sService.postImg(data, function (res) {
+                servicesControl.postImg(data, function (res) {
                     //toastr.success("", 'Схема сохранена.');
                 });
                 scope.img = new Image();
@@ -100,7 +100,7 @@ serviceModule.directive('descriptDrawing', ['setElemNewSize', 'sService', '$wind
             scope.prepareCanvas = function () {
                 $("body").css("overflow", "hidden");
                 context = canvas.getContext("2d");
-                var rrr = sService.getImg(function (res) {
+                var rrr = servicesControl.getImg(function (res) {
                     scope.img = new Image();
                     scope.img.src = res.image;
                     context.drawImage(scope.img, 0, 0);

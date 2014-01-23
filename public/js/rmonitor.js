@@ -24,7 +24,7 @@ serviceModule.controller('NavCtrl', ['$scope', '$location', function ($scope, $l
     });
 }]);
 
-serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'sService', function ($scope, $http, sService) {
+serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'servicesControl', function ($scope, $http, servicesControl) {
     var timer;
     $scope.clear = function (){
 
@@ -32,7 +32,7 @@ serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'sService', functio
     $scope.$on('$destroy', function iVeBeenDismissed() {
         clearTimeout(timer);
     });
-    $scope.services = sService.get(function (res) {
+    $scope.services = servicesControl.get(function (res) {
         $scope.services = res;
         $scope.viewStatusServer = '';
         angular.forEach($scope.services, function (value, key) {
@@ -48,7 +48,7 @@ serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'sService', functio
             serverCheckConnInternet(function (res) {
                 if (res == 'true') {
                     $scope.viewStatusServer = '';
-                    sService.checkConnection(value.FeatureServiceUrl, function (r) {
+                    servicesControl.checkConnection(value.FeatureServiceUrl, function (r) {
                         if (r == 'true') {
                             value.statusServer = "ok";
                             value.servericonclass = 'glyphicon glyphicon-ok-sign';
@@ -83,7 +83,7 @@ serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'sService', functio
 
 
     function serverCheckConnInternet(callback) {
-        sService.checkConnection('http://google.ru', function (res) {
+        servicesControl.checkConnection('http://google.ru', function (res) {
             callback(res);
         })
     };
@@ -99,7 +99,7 @@ serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'sService', functio
         var ser = {"name": name, "FeatureServiceUrl": address, servericonclass: "glyphicon glyphicon-refresh", iconclass: "glyphicon glyphicon-refresh", pX: 0, pY: 50};
         $scope.services.push(ser);
         var newarrayservices = filtServices($scope.services);
-        sService.post(newarrayservices, function (res) {
+        servicesControl.post(newarrayservices, function (res) {
             $scope.search.name = "";
             $scope.search.FeatureServiceUrl = "";
             toastr.success("", 'Сервис добавлен.');
@@ -118,7 +118,7 @@ serviceModule.controller('ServicesCtrl', ['$scope', '$http', 'sService', functio
     $scope.deleteService = function (service) {
         $scope.services = _.without($scope.services, service);
         newarrayservices = filtServices($scope.services);
-        sService.post(newarrayservices, function (res) {
+        servicesControl.post(newarrayservices, function (res) {
             toastr.success("", 'Сервис "' + service.name + '" удален.');
         });
     }

@@ -8,7 +8,7 @@ serviceModule.config(function ($routeProvider) {
         .when('/schema', {templateUrl: 'partials/schema.html', controller: 'ServicesCtrl'})
         .otherwise({redirectTo: '/table'});
 });
-serviceModule.factory('sService', ['$http', function ($http) {
+serviceModule.factory('servicesControl', ['$http', function ($http) {
     var services = {};
     services.get = function (callback) {
         return $http.get('services').success(function (res) {
