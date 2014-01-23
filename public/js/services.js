@@ -42,6 +42,11 @@ serviceModule.factory('servicesControl', ['$http', function ($http) {
     }
     return services;
 }]);
+serviceModule.factory('schemaControl', function () {
+    var schema = {};
+
+    return schema;
+});
 serviceModule.factory('setElemNewSize', function () {
     var services = {};
     services.set = function (elem) {
