@@ -68,13 +68,6 @@ serviceModule.directive('contWrap', ['setElemSize', function (setElemSize) {
 serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function (setElemSize, sService) {
     return {
         template: "",
-        controller: function ($scope, $element, $attrs) {
-            $scope.$on("$destroy", function () {
-                $(window).off("resize", $scope.setsize);
-                $(window).off("resize", $scope.redraw);
-                $("body").css("overflow","auto");
-            });
-        },
         scope: {
             cl: '=',
             clears: '='
@@ -183,6 +176,11 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function 
             scope.prepareCanvas();
             scope.setsize();
             $(window).on("resize", scope.setsize);
+            scope.$on("$destroy", function () {
+                $(window).off("resize", scope.setsize);
+                $(window).off("resize", scope.redraw);
+                $("body").css("overflow","auto");
+            });
         }
     }
 }]);
