@@ -181,6 +181,7 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function 
                 scope.saveCanvas();
             }
 
+            scope.$parent.$parent.clear = scope.clearCanvas;
             scope.prepareCanvas();
             scope.setsize();
             $(window).on("resize", scope.setsize);
