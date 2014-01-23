@@ -91,19 +91,19 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', '$window'
             scope.saveCanvas = function () {
                 var mime;
                 mime = "image/png";
-                var data =  canvas.toDataURL(mime);
+                var data = canvas.toDataURL(mime);
                 sService.postImg(data, function (res) {
                     //toastr.success("", 'Схема сохранена.');
                 });
                 scope.img = new Image();
             }
             scope.prepareCanvas = function () {
-                $("body").css("overflow","hidden");
+                $("body").css("overflow", "hidden");
                 context = canvas.getContext("2d");
                 var rrr = sService.getImg(function (res) {
                     scope.img = new Image();
                     scope.img.src = res.image;
-                    context.drawImage(scope.img,0,0);
+                    context.drawImage(scope.img, 0, 0);
                 });
                 element.mousedown(function (e) {
                     var mouseX = e.pageX - this.offsetLeft;
@@ -144,7 +144,7 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', '$window'
             }
 
             scope.redraw = function () {
-                context.drawImage(scope.img,0,0);
+                context.drawImage(scope.img, 0, 0);
                 context.strokeStyle = "#df4b26";
                 context.lineJoin = "round";
                 context.lineWidth = 5;
@@ -180,7 +180,7 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', '$window'
             scope.$on("$destroy", function () {
                 win.off("resize", scope.setsize);
                 win.off("resize", scope.redraw);
-                $("body").css("overflow","auto");
+                $("body").css("overflow", "auto");
             });
         }
     }
