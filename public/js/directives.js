@@ -37,20 +37,20 @@ serviceModule.directive('dragBox', ['sService', function (sService) {
     }
 }]);
 
-serviceModule.directive('contWrap', ['setElemSize', function (setElemSize) {
+serviceModule.directive('contWrap', ['setElemSize', '$window', function (setElemSize, $window) {
     return {
         templateUrl: "htmltemplates/containmentwrapper.html",
         restrict: 'EAC',
         link: function (scope, element, attrs) {
             var el = element;
-
+            var win = angular.element($window);
             scope.setsize = function () {
                 setElemSize.set(el);
             }
             scope.setsize();
-            $(window).on("resize", scope.setsize);
+            win.on("resize", scope.setsize);
             scope.$on("$destroy", function () {
-                $(window).off("resize", scope.setsize);
+                win.off("resize", scope.setsize);
             });
             element.attr('unselectable', 'on').select(function () {
                 return false
@@ -65,7 +65,7 @@ serviceModule.directive('contWrap', ['setElemSize', function (setElemSize) {
     }
 }]);
 
-serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function (setElemSize, sService) {
+serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', '$window', function (setElemSize, sService, $window) {
     return {
         template: "",
         scope: {
@@ -74,6 +74,7 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function 
         },
         link: function (scope, element, attrs) {
             var el = element;
+            var win = angular.element($window);
             scope.img = new Image();
             scope.$watch('cl', function (c) {
                 curColor = c;
@@ -175,10 +176,10 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function 
             scope.$parent.$parent.clear = scope.clearCanvas;
             scope.prepareCanvas();
             scope.setsize();
-            $(window).on("resize", scope.setsize);
+            win.on("resize", scope.setsize);
             scope.$on("$destroy", function () {
-                $(window).off("resize", scope.setsize);
-                $(window).off("resize", scope.redraw);
+                win.off("resize", scope.setsize);
+                win.off("resize", scope.redraw);
                 $("body").css("overflow","auto");
             });
         }
