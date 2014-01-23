@@ -16,7 +16,6 @@ app.use(express.bodyParser());
 servdb.ensureDb();
 // маршруты
 app.get(baseUrl + '/testurl', function (req, res) {
-    console.log(req.query);
     var t = req.query;
     urltest.testUrl(req.query.url, function (err, result) {
         res.send(result);
