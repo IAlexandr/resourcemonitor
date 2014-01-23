@@ -41,11 +41,6 @@ serviceModule.directive('contWrap', ['setElemSize', function (setElemSize) {
     return {
         templateUrl: "htmltemplates/containmentwrapper.html",
         restrict: 'EAC',
-        controller: function ($scope, $element, $attrs) {
-            $scope.$on("$destroy", function () {
-                $(window).off("resize", $scope.setsize);
-            });
-        },
         link: function (scope, element, attrs) {
             var el = element;
 
@@ -54,6 +49,9 @@ serviceModule.directive('contWrap', ['setElemSize', function (setElemSize) {
             }
             scope.setsize();
             $(window).on("resize", scope.setsize);
+            scope.$on("$destroy", function () {
+                $(window).off("resize", scope.setsize);
+            });
             element.attr('unselectable', 'on').select(function () {
                 return false
             }).css({
