@@ -30,15 +30,14 @@
                     <li ng-class="tableActive"><a class="btn navbar-btn" type="button" href="#/table">Таблица</a></li>
                     <li ng-class="schemaActive"><a class="btn navbar-btn" type="button" href="#/schema">Схема</a></li>
                 </ul>
-                <ul ng-show="schemaActive" class="nav navbar-nav navbar-right">
-                    <li><a class="btn navbar-btn btn-default" id="downloadBtn" type="button">Сохранить</a></li>
-                    <li><a class="btn navbar-btn btn-default  glyphicon glyphicon-trash" id="clearBtn" type="button"></a></li>
-                    <li><a class="btn navbar-btn" id="chooseWhiteSimpleColors" type="button"></a></li>
-                    <li><a class="btn navbar-btn" id="choosePurpleSimpleColors" type="button"></a></li>
-                    <li><a class="btn navbar-btn" id="chooseGreenSimpleColors" type="button"></a></li>
-                    <li><a class="btn navbar-btn" id="chooseYellowSimpleColors" type="button"></a></li>
-                    <li><a class="btn navbar-btn" id="chooseBrownSimpleColors" type="button"></a></li>
-                    <li><a class="btn navbar-btn" id="chooseBlackSimpleColors" type="button"></a></li>
+                <ul ng-show="schemaActive" class="nav navbar-nav navbar-right" ng-init="clr = '#000000'">
+                    <li><a ng-click="clear()" class="btn navbar-btn btn-default  glyphicon glyphicon-trash" id="clearBtn" type="button"></a></li>
+                    <li><a ng-click="clr = '#ffffff'" class="btn navbar-btn" id="chooseWhiteSimpleColors" type="button"></a></li>
+                    <li><a ng-click="clr = '#cb3594'" class="btn navbar-btn" id="choosePurpleSimpleColors" type="button"></a></li>
+                    <li><a ng-click="clr = '#659b41'" class="btn navbar-btn" id="chooseGreenSimpleColors" type="button"></a></li>
+                    <li><a ng-click="clr = '#ffcf33'" class="btn navbar-btn" id="chooseYellowSimpleColors" type="button"></a></li>
+                    <li><a ng-click="clr = '#986928'" class="btn navbar-btn" id="chooseBrownSimpleColors" type="button"></a></li>
+                    <li><a ng-click="clr = '#000000'" class="btn navbar-btn" id="chooseBlackSimpleColors" type="button"></a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
