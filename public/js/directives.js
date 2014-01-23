@@ -108,9 +108,9 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function 
                 $("body").css("overflow","hidden");
                 context = canvas.getContext("2d");
                 var rrr = sService.getImg(function (res) {
-                    var img = new Image();
-                    img.src = res.image;
-                    context.drawImage(img,0,0);
+                    scope.img = new Image();
+                    scope.img.src = res.image;
+                    context.drawImage(scope.img,0,0);
                 });
                 element.mousedown(function (e) {
                     var mouseX = e.pageX - this.offsetLeft;
@@ -130,47 +130,12 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function 
 
                 element.mouseup(function (e) {
                     paint = false;
+                    scope.saveCanvas();
                 });
                 element.mouseleave(function (e) {
                     //paint = false;
                 });
 
-                colorPurple = "#cb3594";
-                colorGreen = "#659b41";
-                colorYellow = "#ffcf33";
-                colorBrown = "#986928";
-                colorWhite = "#ffffff";
-                colorBlack = "#000000";
-                curColor = colorPurple;
-                $('#downloadBtn').mousedown(function (e) {
-                    var mime;
-                    mime = "image/png";
-                    var data =  canvas.toDataURL(mime);
-                    sService.postImg(data, function (res) {
-                        toastr.success("", 'Схема сохранена.');
-                    });
-                });
-                $('#clearBtn').mousedown(function (e) {
-                    scope.clearCanvas();
-                });
-                $('#choosePurpleSimpleColors').mousedown(function (e) {
-                    curColor = colorPurple;
-                });
-                $('#chooseGreenSimpleColors').mousedown(function (e) {
-                    curColor = colorGreen;
-                });
-                $('#chooseYellowSimpleColors').mousedown(function (e) {
-                    curColor = colorYellow;
-                });
-                $('#chooseBrownSimpleColors').mousedown(function (e) {
-                    curColor = colorBrown;
-                });
-                $('#chooseWhiteSimpleColors').mousedown(function (e) {
-                    curColor = colorWhite;
-                });
-                $('#chooseBlackSimpleColors').mousedown(function (e) {
-                    curColor = colorBlack;
-                });
                 clickColor = new Array();
                 clickX = new Array();
                 clickY = new Array();
@@ -186,8 +151,7 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function 
             }
 
             scope.redraw = function () {
-               // context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
-
+                context.drawImage(scope.img,0,0);
                 context.strokeStyle = "#df4b26";
                 context.lineJoin = "round";
                 context.lineWidth = 5;
@@ -213,9 +177,10 @@ serviceModule.directive('descriptDrawing', ['setElemSize', 'sService', function 
                 clickDrag = new Array();
                 clickColor = new Array();
                 context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+                scope.saveCanvas();
             }
 
-
+            scope.saveCanvas();
             scope.prepareCanvas();
             scope.setsize();
             $(window).on("resize", scope.setsize);
